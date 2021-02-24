@@ -1,0 +1,12 @@
+[import](common.lg)
+
+# TextInput_Prompt_3co4Q1()
+- Could you please provide me your booking reference?
+- Please send me your booking reference
+# SendActivity_aww9mv()
+- Sorry I couldn't find your booking reference, please provide a valid booking reference number
+- I'm afraid that I cannot find this booking reference. Could you please provide a valid booking reference?
+
+# SendActivity_jk3JZ8()
+- What else can I help you with?
+- If you need further assistance, please let me know...

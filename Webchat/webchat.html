@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+      <style>
+         html,
+         body {
+            height: 100%;
+         }
+         body {
+            margin: 0;
+         }
+
+         #webchat {
+            height: 100%;
+            width: 100%;
+         }
+      </style>
+   </head>
+   <body>
+      <div id="webchat" role="main"></div>
+      <script>
+         window.WebChat.renderWebChat(
+            {
+               directLine: window.WebChat.createDirectLine({
+                  token: 'YOUR_DIRECT_LINE_TOKEN'
+               }),
+               userID: 'YOUR_USER_ID',
+               username: 'Web Chat User',
+               locale: 'en-US',
+               botAvatarInitials: 'WC',
+               userAvatarInitials: 'WW'
+            },
+            document.getElementById('webchat')
+         );
+      </script>
+   </body>
+</html>

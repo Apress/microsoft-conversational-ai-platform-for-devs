@@ -1,0 +1,225 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "WUasaP",
+    "name": "BookRestaurantTable",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "FFxsbg"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "svUwKY"
+          },
+          "assignments": [
+            {
+              "property": "dialog.locationName",
+              "value": "=coalesce(@locationName, $locationName)"
+            },
+            {
+              "property": "dialog.dateTime",
+              "value": "=coalesce(@datetime, $dateTime)"
+            },
+            {
+              "property": "dialog.number",
+              "value": "=coalesce(@number, $number)"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "NhhWf2"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_NhhWf2()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "${TextInput_InvalidPrompt_NhhWf2()}",
+          "defaultValueResponse": "",
+          "property": "dialog.locationName"
+        },
+        {
+          "$kind": "Microsoft.DateTimeInput",
+          "$designer": {
+            "id": "uPZpOa"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${DateTimeInput_Prompt_uPZpOa()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "${DateTimeInput_InvalidPrompt_uPZpOa()}",
+          "defaultValueResponse": "",
+          "property": "dialog.dateTime"
+        },
+        {
+          "$kind": "Microsoft.NumberInput",
+          "$designer": {
+            "id": "8bpUsG"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${NumberInput_Prompt_8bpUsG()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "dialog.number"
+        },
+        {
+          "$kind": "Microsoft.ConfirmInput",
+          "$designer": {
+            "id": "gvSDhy"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ConfirmInput_Prompt_gvSDhy()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true
+          },
+          "property": "dialog.confirm"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "QQ1uIC"
+          },
+          "condition": "dialog.confirm== true",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "qun0zS"
+              },
+              "property": "dialog.bookingReference",
+              "value": "=concat(rand(100, 1000), substring(dialog.locationName, 0, 3))"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "7fHsN7"
+              },
+              "activity": "${SendActivity_7fHsN7()}"
+            },
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "nUT0tZ"
+              },
+              "value": {
+                "reference": "${dialog.bookingReference}",
+                "location": "${dialog.locationName}",
+                "date": "${dialog.dateTime[0].Value}",
+                "number": "${dialog.number}"
+              },
+              "property": "dialog.bookingDetails"
+            },
+            {
+              "$kind": "Microsoft.EditArray",
+              "$designer": {
+                "id": "rIZWmW"
+              },
+              "changeType": "push",
+              "itemsProperty": "user.bookings",
+              "value": "=dialog.bookingDetails"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.ConfirmInput",
+              "$designer": {
+                "id": "DmVmhZ"
+              },
+              "defaultLocale": "en-us",
+              "disabled": false,
+              "maxTurnCount": 3,
+              "alwaysPrompt": false,
+              "allowInterruptions": false,
+              "prompt": "${ConfirmInput_Prompt_DmVmhZ()}",
+              "unrecognizedPrompt": "",
+              "invalidPrompt": "",
+              "defaultValueResponse": "",
+              "choiceOptions": {
+                "includeNumbers": true
+              },
+              "property": "dialog.change"
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "7paHpt"
+              },
+              "condition": "dialog.change == true",
+              "actions": [
+                {
+                  "$kind": "Microsoft.DeleteProperties",
+                  "$designer": {
+                    "id": "0oU22P"
+                  },
+                  "properties": [
+                    "dialog.locationName",
+                    "dialog.dateTime",
+                    "dialog.number"
+                  ]
+                },
+                {
+                  "$kind": "Microsoft.RepeatDialog",
+                  "$designer": {
+                    "id": "VPzbII"
+                  },
+                  "activityProcessed": true
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.EndDialog",
+                  "$designer": {
+                    "id": "Jwtaw4"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "zk0J68"
+          },
+          "activity": "${SendActivity_zk0J68()}"
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "2Uh5DV"
+          }
+        }
+      ]
+    }
+  ],
+  "generator": "BookRestaurantTable.lg",
+  "recognizer": "BookRestaurantTable.lu.qna",
+  "id": "BookRestaurantTable"
+}

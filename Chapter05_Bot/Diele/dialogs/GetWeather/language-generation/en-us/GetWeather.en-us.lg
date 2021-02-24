@@ -1,0 +1,290 @@
+[import](common.lg)
+
+# TextInput_Prompt_ClTwUa()
+- For which city would you like to get the weather information?
+- Which city are you interested in?
+
+# ChoiceInput_Prompt_34WXJC()
+- Would you like to get the **current weather** or the **weather forecast**?
+- Are you interested in the **current weather** or the **weather forecast**?
+
+# CurrentWeatherCard(city, temp, icon, description)
+[Activity
+    Attachments = ${json(CurrentWeatherCardJson(city, temp, icon, description))}
+]
+
+# CurrentWeatherCardJson(city, temp, icon, description)
+- ```
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.2",
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "Here is the weather for: ${city}",
+            "size": "Large",
+            "isSubtle": true
+        },
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "url": "https://www.weatherbit.io/static/img/icons/${icon}.png",
+                            "size": "Small",
+                            "altText": "Mostly cloudy weather"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "${temp}",
+                            "size": "ExtraLarge",
+                            "spacing": "None"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "°C",
+                            "weight": "Bolder",
+                            "spacing": "Small"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "${description}",
+                            "wrap": true,
+                            "size": "Medium"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+# SendActivity_Ce81PG()
+- ${CurrentWeatherCard(dialog.city, dialog.temp, dialog.icon, dialog.description)}
+
+# WeatherForecastCard(city, date1, icon1, temp1, description1, date2, icon2, temp2, description2, date3, icon3, temp3, description3)
+[Activity
+    Attachments = ${json(WeatherForecastCardJson(city, date1, icon1, temp1, description1, date2, icon2, temp2, description2, date3, icon3, temp3, description3))}
+]
+
+# WeatherForecastCardJson(city, date1, icon1, temp1, description1, date2, icon2, temp2, description2, date3, icon3, temp3, description3)
+- ```
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.2",
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "Here is the weather for: ${city}",
+            "size": "Large",
+            "isSubtle": true
+        },
+        {
+            "type": "TextBlock",
+            "text": "${date1}",
+            "wrap": true,
+            "size": "Medium"
+        },
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "url": "https://www.weatherbit.io/static/img/icons/${icon1}.png",
+                            "size": "Small",
+                            "altText": "Mostly cloudy weather"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "${temp1}",
+                            "size": "ExtraLarge",
+                            "spacing": "None"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "°C",
+                            "weight": "Bolder",
+                            "spacing": "Small"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "${description1}",
+                            "wrap": true,
+                            "size": "Medium"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "TextBlock",
+            "text": "${date2}",
+            "wrap": true,
+            "size": "Medium",
+            "separator": true
+        },
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "url": "https://www.weatherbit.io/static/img/icons/${icon2}.png",
+                            "size": "Small",
+                            "altText": "Mostly cloudy weather"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "${temp2}",
+                            "size": "ExtraLarge",
+                            "spacing": "None"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "°C",
+                            "weight": "Bolder",
+                            "spacing": "Small"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "${description2}",
+                            "wrap": true,
+                            "size": "Medium"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "TextBlock",
+            "text": "${date3}",
+            "wrap": true,
+            "size": "Medium",
+            "separator": true
+        },
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "url": "https://www.weatherbit.io/static/img/icons/${icon3}.png",
+                            "size": "Small",
+                            "altText": "Mostly cloudy weather"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "${temp3}",
+                            "size": "ExtraLarge",
+                            "spacing": "None"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "°C",
+                            "weight": "Bolder",
+                            "spacing": "Small"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "${description3}",
+                            "wrap": true,
+                            "size": "Medium"
+                        }
+                    ]
+                }
+            ],
+            "separator": true
+        }
+    ]
+}
+```
+# SendActivity_G48GxB()
+- ${WeatherForecastCard(dialog.city, dialog.date1, dialog.icon1, dialog.temp1, dialog.description1, dialog.date2, dialog.icon2, dialog.temp2, dialog.description2, dialog.date3, dialog.icon3, dialog.temp3, dialog.description3)}

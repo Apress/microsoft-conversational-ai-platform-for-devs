@@ -1,0 +1,38 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "EuRZoC",
+    "name": "Help",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "NC0Sag"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "76VOVG"
+          },
+          "activity": "${SendActivity_76VOVG()}"
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "KhKa8g"
+          }
+        }
+      ]
+    }
+  ],
+  "generator": "Help.lg",
+  "recognizer": "Help.lu.qna",
+  "id": "Help"
+}

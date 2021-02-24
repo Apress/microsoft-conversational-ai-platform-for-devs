@@ -1,0 +1,7 @@
+{
+  "$kind": "Microsoft.QnAMakerRecognizer",
+  "id": "QnA_diele",
+  "knowledgeBaseId": "=settings.qna.diele_en_us_qna",
+  "hostname": "=settings.qna.hostname",
+  "endpointKey": "=settings.qna.endpointKey"
+}

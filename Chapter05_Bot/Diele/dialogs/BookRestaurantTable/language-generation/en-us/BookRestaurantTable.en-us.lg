@@ -1,0 +1,32 @@
+[import](common.lg)
+
+# TextInput_Prompt_NhhWf2()
+- What restaurant do you want to book a table at?
+- Which restaurant would you prefer?
+
+# DateTimeInput_Prompt_uPZpOa()
+- Could you please tell me your preferred date and time for when you want to book a restaurant table
+- Please also tell me your preferred date and time
+
+# TextInput_InvalidPrompt_NhhWf2()
+- Sorry this is an invalid restaurant name
+# DateTimeInput_InvalidPrompt_uPZpOa()
+- Please enter a valid date and time
+# NumberInput_Prompt_8bpUsG()
+- Could you please also tell me for how many people you wish to reserve a spot?
+- Please tell me the number of people for your table reservation
+
+
+
+# SendActivity_7fHsN7()
+- Great, then I will go ahead and book the restaurant table for you. You will likely receive a confirmation mail with your booking reference **${dialog.bookingReference}** shortly as well
+# ConfirmInput_Prompt_gvSDhy()
+- Ok, I noted down the following details: location: ${dialog.locationName}, date and time: ${dialog.dateTime[0].Value} and number of people: ${dialog.number}. Is that correct?
+- So, I noted down the following details: location: ${dialog.locationName}, date and time: ${dialog.dateTime[0].Value} and number of people: ${dialog.number}. Can you confirm that please?
+# ConfirmInput_Prompt_DmVmhZ()
+- Do you maybe want to change the booking details?
+- Is there anything you want to change from the booking's details?
+
+# SendActivity_zk0J68()
+- What else can I help you with?
+- If you need further assistance, please let me know...

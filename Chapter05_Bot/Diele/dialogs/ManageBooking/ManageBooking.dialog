@@ -1,0 +1,147 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "3udFgi",
+    "name": "ManageBooking",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "yDmyg1"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "cBeou1"
+          },
+          "assignments": [
+            {
+              "property": "dialog.bookingReference",
+              "value": "=coalesce(@bookingNumber, $bookingReference)"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "3co4Q1"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": true,
+          "prompt": "${TextInput_Prompt_3co4Q1()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "dialog.bookingReference"
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "eXaJKr"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "itemsProperty": "user.bookings",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "xIY3ie"
+              },
+              "value": "=json(dialog.foreach.value)",
+              "property": "turn.bookingRef"
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "oGTifn"
+              },
+              "condition": "turn.bookingRef.reference == dialog.bookingReference",
+              "actions": [
+                {
+                  "$kind": "Microsoft.EditArray",
+                  "$designer": {
+                    "id": "uSzBKj"
+                  },
+                  "changeType": "remove",
+                  "itemsProperty": "user.bookings",
+                  "value": "=turn.bookingRef"
+                },
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "RT6x37"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "ChangeBookingDetails",
+                  "resultProperty": "dialog.updatedBooking",
+                  "options": "turn.bookingRef"
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "YsCglw"
+                  },
+                  "property": "dialog.falseRefs",
+                  "value": "=add(int(dialog.falseRefs), 1)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "0UTHjg"
+          },
+          "condition": "count(user.bookings) == dialog.falseRefs",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "aww9mv"
+              },
+              "activity": "${SendActivity_aww9mv()}"
+            },
+            {
+              "$kind": "Microsoft.RepeatDialog",
+              "$designer": {
+                "id": "xQLlHO"
+              },
+              "activityProcessed": true
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "jk3JZ8"
+              },
+              "activity": "${SendActivity_jk3JZ8()}"
+            },
+            {
+              "$kind": "Microsoft.EndDialog",
+              "$designer": {
+                "id": "g6zI6z"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "ManageBooking.lg",
+  "recognizer": "ManageBooking.lu.qna",
+  "id": "ManageBooking"
+}

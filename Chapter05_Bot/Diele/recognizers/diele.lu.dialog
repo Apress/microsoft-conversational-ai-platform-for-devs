@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_diele",
+  "recognizers": {
+    "en-us": "diele.en-us.lu",
+    "": "diele.en-us.lu"
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "foz0Bh",
+    "name": "GetWeather",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "TEOOLI"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "eZ6VX9"
+          },
+          "assignments": [
+            {
+              "property": "dialog.city",
+              "value": "=coalesce(@city, $city)"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "ClTwUa"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_ClTwUa()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "dialog.city"
+        },
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "34WXJC"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ChoiceInput_Prompt_34WXJC()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true
+          },
+          "choices": [
+            "Current weather",
+            "Weather forecast"
+          ],
+          "property": "dialog.weatherChoice"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "esCGF5"
+          },
+          "condition": "dialog.weatherChoice",
+          "cases": [
+            {
+              "value": "Current weather",
+              "actions": [
+                {
+                  "$kind": "Microsoft.HttpRequest",
+                  "$designer": {
+                    "id": "vcAgVf"
+                  },
+                  "method": "GET",
+                  "url": "https://api.weatherbit.io/v2.0/current?city=${dialog.city}&key=258abc8b2628443b92401bf5d17df143",
+                  "resultProperty": "dialog.currentWeather"
+                },
+                {
+                  "$kind": "Microsoft.TraceActivity",
+                  "$designer": {
+                    "id": "oB3fr3"
+                  },
+                  "value": "=dialog.currentWeather.content",
+                  "name": "Current weather received"
+                },
+                {
+                  "$kind": "Microsoft.SetProperties",
+                  "$designer": {
+                    "id": "8hUBtG"
+                  },
+                  "assignments": [
+                    {
+                      "property": "dialog.icon",
+                      "value": "=dialog.currentWeather.content.data[0].weather.icon"
+                    },
+                    {
+                      "property": "dialog.description",
+                      "value": "=dialog.currentWeather.content.data[0].weather.description"
+                    },
+                    {
+                      "property": "dialog.temp",
+                      "value": "=dialog.currentWeather.content.data[0].temp"
+                    }
+                  ]
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "Ce81PG"
+                  },
+                  "activity": "${SendActivity_Ce81PG()}"
+                }
+              ]
+            },
+            {
+              "value": "Weather forecast",
+              "actions": [
+                {
+                  "$kind": "Microsoft.HttpRequest",
+                  "$designer": {
+                    "id": "x8AYfw"
+                  },
+                  "method": "GET",
+                  "url": "https://api.weatherbit.io/v2.0/forecast/daily?city=${dialog.city}&key=258abc8b2628443b92401bf5d17df143",
+                  "resultProperty": "dialog.weatherForecast"
+                },
+                {
+                  "$kind": "Microsoft.SetProperties",
+                  "$designer": {
+                    "id": "1gEbtf"
+                  },
+                  "assignments": [
+                    {
+                      "property": "dialog.date1",
+                      "value": "=dialog.weatherForecast.content.data[0].valid_date"
+                    },
+                    {
+                      "property": "dialog.date2",
+                      "value": "=dialog.weatherForecast.content.data[1].valid_date"
+                    },
+                    {
+                      "value": "=dialog.weatherForecast.content.data[2].valid_date",
+                      "property": "dialog.date3"
+                    },
+                    {
+                      "property": "dialog.icon1",
+                      "value": "=dialog.weatherForecast.content.data[0].weather.icon"
+                    },
+                    {
+                      "property": "dialog.icon2",
+                      "value": "=dialog.weatherForecast.content.data[1].weather.icon"
+                    },
+                    {
+                      "property": "dialog.icon3",
+                      "value": "=dialog.weatherForecast.content.data[2].weather.icon"
+                    },
+                    {
+                      "property": "dialog.temp1",
+                      "value": "=dialog.weatherForecast.content.data[0].temp"
+                    },
+                    {
+                      "property": "dialog.temp2",
+                      "value": "=dialog.weatherForecast.content.data[1].temp"
+                    },
+                    {
+                      "property": "dialog.temp3",
+                      "value": "=dialog.weatherForecast.content.data[2].temp"
+                    },
+                    {
+                      "property": "dialog.description1",
+                      "value": "=dialog.weatherForecast.content.data[0].weather.description"
+                    },
+                    {
+                      "property": "dialog.description2",
+                      "value": "=dialog.weatherForecast.content.data[1].weather.description"
+                    },
+                    {
+                      "value": "=dialog.weatherForecast.content.data[2].weather.description",
+                      "property": "dialog.description3"
+                    }
+                  ]
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "G48GxB"
+                  },
+                  "activity": "${SendActivity_G48GxB()}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "Bk9UMQ"
+          }
+        }
+      ]
+    }
+  ],
+  "generator": "GetWeather.lg",
+  "recognizer": "GetWeather.lu.qna",
+  "id": "GetWeather"
+}

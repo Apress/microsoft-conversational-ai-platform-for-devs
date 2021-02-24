@@ -1,0 +1,19 @@
+{
+  "diele.en-us": {
+    "rootDialog": true,
+    "triggers": {
+      "BookRestaurantTable": [
+        "BookRestaurantTable.en-us"
+      ],
+      "ManageBooking": [
+        "ManageBooking.en-us"
+      ],
+      "GetWeather": [
+        "GetWeather.en-us"
+      ],
+      "Help": [
+        "Help.en-us"
+      ]
+    }
+  }
+}

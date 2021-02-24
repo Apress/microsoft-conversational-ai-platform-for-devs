@@ -1,0 +1,112 @@
+[import](common.lg)
+
+# HelpCard
+[Activity
+    Attachments = ${json(HelpCardJson())}
+]
+
+# HelpCardJson
+- ```
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.2",
+    "body": [
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "url": "https://convaibookstore.blob.core.windows.net/resources/Diele_Icon.png",
+                            "size": "Small",
+                            "style": "Person"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "I see that you need help. I'm here to assist you on the following topics:",
+                            "wrap": true,
+                            "spacing": "Medium"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "TextBlock",
+            "text": "**Restaurant bookings - I can assist on these topics:**"
+        },
+        {
+            "type": "TextBlock",
+            "text": "- Book a table at a restaurant of your choice",
+            "wrap": true
+        },
+        {
+            "type": "TextBlock",
+            "text": "- Manage your restaurant bookings (update, cancel or show details)",
+            "wrap": true
+        },
+        {
+            "type": "TextBlock",
+            "text": "**Weather information - The following things are part of my scope:**",
+            "wrap": true,
+            "separator": true
+        },
+        {
+            "type": "TextBlock",
+            "text": "- Show current weather information for a location"
+        },
+        {
+            "type": "TextBlock",
+            "text": "- Show weather forecast for a given location"
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "You can type in your inquiry or simply click the button below to continue the conversation!",
+                    "wrap": true
+                }
+            ],
+            "bleed": true,
+            "style": "accent",
+            "spacing": "Small",
+            "separator": true
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Book a table at a restaurant",
+                    "data": "I want to book a restaurant table"
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "Manage a restaurant booking",
+                    "data": "I want to change my booking please"
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "Show me the weather",
+                    "data": "Please tell me the weather"
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+# SendActivity_76VOVG()
+- ${HelpCard()}

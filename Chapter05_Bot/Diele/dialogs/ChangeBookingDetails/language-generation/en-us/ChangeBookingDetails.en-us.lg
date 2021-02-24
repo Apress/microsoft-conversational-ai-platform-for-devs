@@ -1,0 +1,23 @@
+[import](common.lg)
+
+# ChoiceInput_Prompt_u0Ullo()
+- Please select the value you want to change
+- Which property do you want to change?
+
+# TextInput_Prompt_r8PPp7()
+- Please tell me the correct location so I can change the booking accordingly
+# DateTimeInput_Prompt_5EpCak()
+- Please provide a valid date so I can update your booking
+# NumberInput_Prompt_OAyO8u()
+- Please tell me the updated number of people for your booking
+# SendActivity_on6q6g()
+- Ok, I will change the location of your reservation to **${dialog.location}**
+- I corrected the location of your booking now...
+
+# SendActivity_Ehkg3b()
+- Thank you, I will modify the dates accordingly
+# SendActivity_o5XcDE()
+- Not a problem, I have changed to number of people in your booking to **${dialog.number}**
+- Thank you, I have changed the number of people for your booking
+
+- Not a problem, I have changed to number of people in your booking to **${dialog.number}**

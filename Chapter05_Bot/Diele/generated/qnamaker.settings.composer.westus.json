@@ -1,0 +1,7 @@
+{
+    "qna": {
+        "diele_manual_source_en_us_qna": "1dbc9c12-5476-4485-9d98-24f4c5899d02",
+        "hostname": "https://convaibook-qnamaker.azurewebsites.net/qnamaker",
+        "diele_en_us_qna": "1dbc9c12-5476-4485-9d98-24f4c5899d02"
+    }
+}

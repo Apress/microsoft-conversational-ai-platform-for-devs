@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "QnA_diele",
+  "recognizers": {
+    "en-us": "diele.en-us.qna",
+    "": "diele.en-us.qna"
+  }
+}

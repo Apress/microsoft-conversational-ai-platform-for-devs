@@ -1,0 +1,178 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "soVGfP",
+    "name": "ChangeBookingDetails",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "WOQ77T"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "u0Ullo"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ChoiceInput_Prompt_u0Ullo()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or "
+          },
+          "property": "dialog.changeProperty",
+          "choices": [
+            "Location",
+            "Date",
+            "Number of people"
+          ],
+          "recognizerOptions": {
+            "recognizeOrdinals": true,
+            "recognizeNumbers": true
+          }
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "mnI5fm"
+          },
+          "condition": "dialog.changeProperty",
+          "cases": [
+            {
+              "value": "Location",
+              "actions": [
+                {
+                  "$kind": "Microsoft.TextInput",
+                  "$designer": {
+                    "id": "r8PPp7"
+                  },
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": true,
+                  "allowInterruptions": false,
+                  "prompt": "${TextInput_Prompt_r8PPp7()}",
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "property": "dialog.location"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "on6q6g"
+                  },
+                  "activity": "${SendActivity_on6q6g()}"
+                }
+              ]
+            },
+            {
+              "value": "Date",
+              "actions": [
+                {
+                  "$kind": "Microsoft.DateTimeInput",
+                  "$designer": {
+                    "id": "5EpCak"
+                  },
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": true,
+                  "allowInterruptions": false,
+                  "prompt": "${DateTimeInput_Prompt_5EpCak()}",
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "property": "dialog.date"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "Ehkg3b"
+                  },
+                  "activity": "${SendActivity_Ehkg3b()}"
+                }
+              ]
+            },
+            {
+              "value": "Number of people",
+              "actions": [
+                {
+                  "$kind": "Microsoft.NumberInput",
+                  "$designer": {
+                    "id": "OAyO8u"
+                  },
+                  "defaultLocale": "en-us",
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": true,
+                  "allowInterruptions": false,
+                  "prompt": "${NumberInput_Prompt_OAyO8u()}",
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "property": "dialog.number"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "o5XcDE"
+                  },
+                  "activity": "${SendActivity_o5XcDE()}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "qPTsrP"
+          },
+          "assignments": [
+            {
+              "property": "dialog.bookingDetails",
+              "value": {
+                "reference": "${dialog.reference}",
+                "location": "${dialog.location}",
+                "date": "${dialog.date}",
+                "number": "${dialog.number}"
+              }
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.EditArray",
+          "$designer": {
+            "id": "vkim8u"
+          },
+          "changeType": "push",
+          "itemsProperty": "user.bookings",
+          "value": "=dialog.bookingDetails"
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "f0p8VG"
+          }
+        }
+      ]
+    }
+  ],
+  "generator": "ChangeBookingDetails.lg",
+  "recognizer": "ChangeBookingDetails.lu.qna",
+  "id": "ChangeBookingDetails"
+}

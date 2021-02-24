@@ -1,0 +1,111 @@
+[import](common.lg)
+
+# SendActivity_Welcome()
+- ${GreetingCard()}
+
+# SendActivity_003038
+- You said '${turn.activity.text}'
+
+# GreetingCardJson
+- ```
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.2",
+    "body": [
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "url": "https://solvionwebsitestore.blob.core.windows.net/res/Bot_Icon03.png",
+                            "size": "Medium",
+                            "style": "Person"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "Hi, my name is Diele!",
+                            "weight": "Bolder",
+                            "wrap": true
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "I'm your personal assistant, providing you help and assistance for the following topics:",
+                            "wrap": true,
+                            "spacing": "Medium"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "TextBlock",
+            "text": "- Restaurant bookings (e.g.: Book a table, manage booking)",
+            "wrap": true
+        },
+        {
+            "type": "TextBlock",
+            "text": "- Weather information"
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "If you are not sure what to type in, you can always ask me for help by just typing **Help** into the chat!",
+                    "wrap": true
+                }
+            ],
+            "bleed": true,
+            "style": "warning",
+            "spacing": "Small",
+            "separator": true
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Help",
+                    "data": "Help"
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "Book a table",
+                    "data": "Book a table"
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "Show me the weather",
+                    "data": "Show me the weather"
+                }
+            ]
+        }
+    ]
+}
+```
+
+# GreetingCard
+[Activity
+    Attachments = ${json(GreetingCardJson())}
+]
+
+
+# TextInput_Prompt_hqE8LA()
+[Activity
+    Text = ${expandText(@answer)}
+    SuggestedActions = ${foreach(turn.recognized.answers[0].context.prompts, x, x.displayText)}
+]
+
+# SendActivity_9Kjm5g()
+- ${expandText(@answer)}

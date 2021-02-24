@@ -1,0 +1,78 @@
+
+> LUIS application information
+> !# @app.versionId = 0.1
+> !# @app.culture = en-us
+> !# @app.luis_schema_version = 3.2.0
+
+
+> # Intent definitions
+
+# BookRestaurantTable
+- book a table at the {@locationName=redmond steak house and grill} please.
+- can you reserve a table for 4 people at the {@locationName=famous sushi bar} tomorrow?
+- could you reserve a table at {@locationName=tom’s diner} tomorrow?
+- please reserve a spot for 5 at {@locationName=jamie’s kitchen} on 23rd of november.
+- reserve a table for saturday 3 p.m. at {@locationName=hard rock café} for six people please
+- I want to book a restaurant table please
+
+
+# ManageBooking
+- i want to change my booking please
+- can I adapt my booking with numer {@bookingNumber=123abc}
+- I need to make a change in my reservation {@bookingNumber=456def}
+- could you maybe modify my booking with the reference {@bookingNumber=789ghi}
+- please let me change one of my reservations
+
+
+# GetWeather
+- please tell me the weather
+- what is the weather like in {@city=Seattle}
+- could you tell me the weather forecast for {@city=redmond}?
+- how is the weather in {@city=new york}?
+- what's the weather in {@city=berlin}?
+
+
+# Help
+- Help
+- I need help
+- could you assist me please
+- I need assistance
+- Please help me
+
+
+> # Entity definitions
+
+@ ml locationName
+
+@ ml bookingNumber
+
+@ ml city
+
+
+> # PREBUILT Entity definitions
+
+@ prebuilt datetimeV2
+
+@ prebuilt number
+
+
+> # Phrase list definitions
+
+
+> # List entities
+
+> # RegEx entities
+
+
+
+
+> Source: cross training. Please do not edit these directly!
+# DeferToRecognizer_QnA_diele
+- How much time ahead do I need to book a table?
+- How long should I book in advance?
+- Is there a way of changing an existing reservation?
+- How can I change an existing booking?
+- I made a mistake at a booking, how can I change that?
+- How can I book a restaurant table?
+- How to book a table?
+- How to make a reservation?

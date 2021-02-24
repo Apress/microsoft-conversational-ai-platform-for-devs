@@ -1,0 +1,63 @@
+# ? How much time ahead do I need to book a table?
+- How long should I book in advance?
+
+**Filters:**
+- dialogName=diele
+
+```
+Basically, it would be good to book at least 24 hours in advance to avoid any problems...
+```
+
+# ? Is there a way of changing an existing reservation?
+- How can I change an existing booking?
+- I made a mistake at a booking, how can I change that?
+
+**Filters:**
+- dialogName=diele
+
+```
+To modify an existing booking, just type in **"I want to change my booking with the number 123abc"** for example, to change an existing reservation
+```
+
+# ? How can I book a restaurant table?
+- How to book a table?
+- How to make a reservation?
+
+**Filters:**
+- dialogName=diele
+
+```
+To book a restaurant table, simply send me a message like **"I want to book a restaurant table please"** and optionally you can also pass the following details, which are needed to successfully book a table:\n\n*   Location \n\n*   Date \n\n*   Number of people
+```
+
+> Source: cross training. Please do not edit these directly!
+> !# @qna.pair.source = crosstrained
+
+# ? book a table at the redmond steak house and grill please.
+- can you reserve a table for 4 people at the famous sushi bar tomorrow?
+- could you reserve a table at tom’s diner tomorrow?
+- please reserve a spot for 5 at jamie’s kitchen on 23rd of november.
+- reserve a table for saturday 3 p.m. at hard rock café for six people please
+- I want to book a restaurant table please
+- i want to change my booking please
+- can I adapt my booking with numer 123abc
+- I need to make a change in my reservation 456def
+- could you maybe modify my booking with the reference 789ghi
+- please let me change one of my reservations
+- please tell me the weather
+- what is the weather like in Seattle
+- could you tell me the weather forecast for redmond?
+- how is the weather in new york?
+- what's the weather in berlin?
+- Help
+- I need help
+- could you assist me please
+- I need assistance
+- Please help me
+
+**Filters:**
+- dialogName=diele
+
+```
+intent=DeferToRecognizer_LUIS_diele
+```
